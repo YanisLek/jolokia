@@ -73,6 +73,8 @@ public class JolokiaServer {
     // HttpContext created when we start it up
     private HttpContext httpContext;
 
+    private LogHandler logHandler;
+
     /**
      * Create the Jolokia server which in turn creates an HttpServer for serving Jolokia requests. This
      * uses a loghandler which prints out to stdout.
@@ -150,7 +152,7 @@ public class JolokiaServer {
             try {
                 cleaner.stopServer();
             } catch (InterruptedException exp) {
-                System.err.println("Could not stop Jolokia server properly: " + exp);
+                logHandler.error("Could not stop Jolokia server properly: ", exp);
             }
         }
     }
@@ -217,6 +219,7 @@ public class JolokiaServer {
     private void init(HttpServer pServer, JolokiaServerConfig pConfig, LogHandler pLogHandler)  {
         config = pConfig;
         httpServer = pServer;
+        this.logHandler = pLogHandler;
 
         Configuration jolokiaCfg = config.getJolokiaConfig();
         LogHandler log = pLogHandler != null ?
