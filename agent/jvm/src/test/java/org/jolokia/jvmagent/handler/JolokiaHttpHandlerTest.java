@@ -286,8 +286,10 @@ public class JolokiaHttpHandlerTest {
         expect(exchange.getAttribute(ConfigKey.JAAS_SUBJECT_REQUEST_ATTRIBUTE)).andStubReturn(null);
         Headers headers = new Headers();
         expect(exchange.getRequestHeaders()).andReturn(headers).anyTimes();
-        for (int i = 0; i < pHeaders.length; i += 2) {
-            headers.set(pHeaders[i], pHeaders[i + 1]);
+        for (int i = 0; i < pHeaders.length; i += 2)
+        {
+            String pHeaderV = pHeaders[i + 1];
+            headers.set(pHeaders[i], pHeaderV == null ? "" : pHeaderV);
         }
         return exchange;
     }
