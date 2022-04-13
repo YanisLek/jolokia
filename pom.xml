@@ -248,6 +248,11 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.18.1</version>
+          <configuration>
+            <argLine>
+              -javaagent:"${settings.localRepository}"/org/jmockit/jmockit/1.49/jmockit-1.49.jar
+            </argLine>
+          </configuration>
         </plugin>
 
         <plugin>
@@ -626,7 +631,7 @@
       <dependency>
         <groupId>org.jmockit</groupId>
         <artifactId>jmockit</artifactId>
-        <version>1.8</version>
+        <version>1.49</version>
         <scope>test</scope>
       </dependency>
 
