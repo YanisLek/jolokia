@@ -122,7 +122,7 @@ public class DelegatingAuthenticatorTest extends BaseAuthenticatorTest {
 
     @Test
     public void invalidProtocol() {
-        DelegatingAuthenticator authenticator = new DelegatingAuthenticator("jolokia","ftp://ftp.redhat.com",null,false);
+        DelegatingAuthenticator authenticator = new DelegatingAuthenticator("jolokia","http://ftp.redhat.com",null,false);
 
         Authenticator.Result result = authenticator.authenticate(createHttpExchange(new Headers()));
         Authenticator.Failure failure = (Authenticator.Failure) result;
